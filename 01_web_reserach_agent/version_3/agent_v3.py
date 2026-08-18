@@ -11,7 +11,7 @@ from langgraph.graph import StateGraph,START, END
 import pyodbc
 
 load_dotenv()
-llm=ChatGroq(model="llama-3.3-70b-versatile",
+llm=ChatGroq(model="openai/gpt-oss-120b",
              temperature=0)
 search=TavilySearch(max_results=3)
 
