@@ -5,7 +5,7 @@ from langchain_core.messages import ToolMessage,HumanMessage
 
 load_dotenv()
 
-llm=ChatGroq(model="llama-3.3-70b-versatile",
+llm=ChatGroq(model="openai/gpt-oss-120b",
              temperature=0)
 search=TavilySearch(max_results=3)
 
