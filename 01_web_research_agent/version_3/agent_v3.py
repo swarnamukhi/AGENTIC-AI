@@ -12,6 +12,7 @@ import gradio as gr
 import pyodbc
 
 load_dotenv()
+
 llm=ChatGroq(model="openai/gpt-oss-120b",
              temperature=0)
 search=TavilySearch(max_results=3)
