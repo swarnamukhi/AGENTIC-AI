@@ -1,4 +1,7 @@
 langchain
 langchain-groq
 langchain-tavily
+langgraph
+pyodbc
 python-dotenv
+gradio

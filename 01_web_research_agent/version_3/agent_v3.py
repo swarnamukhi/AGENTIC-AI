@@ -7,11 +7,12 @@ from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode
 from langchain_core.tools import tool
 from langgraph.graph import StateGraph,START, END
+import gradio as gr
 
 import pyodbc
 
 load_dotenv()
-llm=ChatGroq(model="llama-3.3-70b-versatile",
+llm=ChatGroq(model="openai/gpt-oss-120b",
              temperature=0)
 search=TavilySearch(max_results=3)
 
@@ -90,8 +91,25 @@ graph_builder.add_conditional_edges(
 
 graph_builder.add_edge("tools", "agent")
 graph = graph_builder.compile()
+#graph.get_graph().print_ascii()
 
 
-user_input=input("enter user question")
-result=graph.invoke({"messages":[HumanMessage(content=user_input)]})
-print(result)
+#user_input=input("enter user question")
+def chatbot(user_input):
+    result=graph.invoke({"messages":[HumanMessage(content=user_input)]})
+    return result["messages"][-1].content
+
+demo = gr.Interface(
+    fn=chatbot,
+    inputs=gr.Textbox(
+        label="Ask your Research Agent",
+        placeholder="Ask a question..."
+    ),
+    outputs=gr.Textbox(
+        label="Agent Response"
+    ),
+    title="Web Research Agent"
+)
+
+demo.launch()
+

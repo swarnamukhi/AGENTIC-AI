@@ -2,4 +2,6 @@
 .venv/
 __pycache__/
 *.pyc
-Agentic AI.webm
+version 1 and 2.webm
+version3.webm
+.gradio/
